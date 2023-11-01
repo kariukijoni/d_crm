@@ -54,3 +54,29 @@ def createOrder(request):
     
 
 
+def updateOrder(request,pk):
+    order=Order.objects.get(id=pk)
+    form =OrderForm(instance=order)
+
+
+    
+    if request.method == 'POST':
+        form = OrderForm(request.POST,instance=order)
+        if form.is_valid():
+            form.save()
+
+            return redirect('/home')
+
+    context={'form':form}
+    return render (request,'accounts/order_form.html',context)
+
+def deleteOrder(request,pk):
+    order=Order.objects.get(id=pk)
+
+    if request.method=='POST':
+        order.delete()
+
+        return redirect('/home')
+
+    context={'item':order}
+    return render (request,'accounts/delete_form.html',context)
