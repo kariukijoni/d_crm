@@ -6,7 +6,11 @@
       <h5>Customer</h5>
       <hr />
       <a class="btn btn-outline-info btn-sm btn-block mb-1">Update Customer</a>
-      <a class="btn btn-outline-danger btn-sm btn-block">Delete Customer</a>
+      <a
+        class="btn btn-outline-info btn-sm btn-block"
+        href="{% url 'create_order' customer.id %}"
+        >Place Order</a
+      >
     </div>
   </div>
   <div class="col-md">
@@ -32,7 +36,7 @@
   <div class="col-md">
     <div class="card card-body">
       <form method="get">
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
       </form>
     </div>
   </div>
@@ -62,8 +66,20 @@
           {% endcomment %}
           <td>{{i.date_created}}</td>
           <td>{{i.status}}</td>
-          <td><a class="btn btn-primary btn-sm" href="">Update</a></td>
-          <td><a class="btn btn-danger btn-sm" href="">Remove</a></td>
+          <td>
+            <a
+              class="btn btn-primary btn-sm"
+              href="{% url 'update_order' i.id %}"
+              >update</a
+            >
+          </td>
+          <td>
+            <a
+              class="btn btn-danger btn-sm"
+              href="{% url 'delete_order' i.id %}"
+              >Delete</a
+            >
+          </td>
         </tr>
         {% endfor %}
       </table>
