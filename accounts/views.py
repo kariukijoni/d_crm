@@ -4,6 +4,8 @@ from .models import *
 
 from .forms import OrderForm
 from django.forms import inlineformset_factory
+
+from .filters import OrderFilter
 # Create your views here.
 
 
@@ -34,7 +36,11 @@ def customers(request,pk):
     customer=Customer.objects.get(id=pk)
     orders=customer.order_set.all()
     order_count=orders.count()
-    context= {'customer':customer,'orders':orders,'order_count':order_count}
+
+    order_filter=OrderFilter(request.GET,queryset=orders)
+    orders=order_filter.qs
+
+    context= {'customer':customer,'orders':orders,'order_count':order_count,'order_filter':order_filter}
 
     return render(request, 'accounts/customers.html',context)
 
