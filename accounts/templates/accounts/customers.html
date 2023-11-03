@@ -53,6 +53,7 @@
           {% comment %}
           <th>Price</th>
           {% endcomment %}
+          <th>Note</th>
           <th>Date Ordered</th>
           <th>Status</th>
           <th>Update</th>
@@ -62,6 +63,7 @@
         <tr>
           <td>{{ i.product }}</td>
           <td>{{i.product.category}}</td>
+          <td>{{i.note}}</td>
           {% comment %}
           <td>{{i.product.price}}</td>
           {% endcomment %}
