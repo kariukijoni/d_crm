@@ -18,6 +18,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        {% if  request.user.is_staff%}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href=" {% url "home" %}">Dashboard</a>
         </li>
@@ -27,6 +28,7 @@
         <li class="nav-item text-white">
           
         </li>
+        {% endif %}
       </ul>
     </div>
     <span class="text-white"><small>Hello, {{request.user}}</small>
