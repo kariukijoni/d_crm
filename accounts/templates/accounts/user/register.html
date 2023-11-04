@@ -5,29 +5,26 @@
 <div class="row">
   
   <div class='col-6 offset-3'>
-    <div class='card card-secondary'>
-        <div class='card-header'>
+    <div class='card mt-3'>
+        <div class='card-header bg-secondary'>
           Register
         </div>
         <div class="card-body">
           <form method="POST">
-            <!-- {% csrf_token %} 
-              {% for field in form %}
-                  {{field.label}}
-                  {{field}}
-            
-              {% endfor %} -->
+             {% csrf_token %} 
 
             {{form.as_p}}
 
-            <input type="submit" name="Create User" />
-
-              <div class="alert alert-danger" role="alert">
-                <i class="bi bi-exclamation-circle-fill"></i>
-                {{form.errors}}
-              </di>
-
+            <input class='btn btn-sm btn-primary' type="submit" name="Create User" />
           </form>
+          {{form.errors}}
+
+
+          <div class=''>
+            <small>Already have an account?</small>
+            <a href="{%url 'login'%}"> Login</a>
+          </div>
+
         </div>
     </div>
   </div>
