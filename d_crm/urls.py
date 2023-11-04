@@ -16,7 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# This urls module is in our main project directory. A particular pattern will
+# tell our website which urls should send us to our "blog" application.
+
+# If we are currently in DEBUG mode, we want to add the following two specific URL patterns.
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)

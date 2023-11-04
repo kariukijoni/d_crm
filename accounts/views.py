@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 
-from .forms import OrderForm, CreateUserForm
+from .forms import OrderForm, CreateUserForm,CustomerForm
 from django.forms import inlineformset_factory
 
 from django.contrib import messages
@@ -86,6 +86,19 @@ def userPage(request):
     return render(request, 'accounts/user.html', context)
 
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
+def accountSettings(request):
+    customer=request.user.customer
+    form=CustomerForm(instance=customer)
+
+    if request.method == 'POST':
+        form=CustomerForm(request.POST,request.FILES,instance=customer)
+        if form.is_valid():
+            form.save()
+
+    context = {'form':form}
+    return render(request, 'accounts/account_settings.html', context)
 
 
 @login_required(login_url='login')
@@ -105,6 +118,7 @@ def home(request):
                'delivered': delivered, 'pending': pending}
 
     return render(request, 'accounts/dashboard.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -126,6 +140,7 @@ def customers(request, pk):
                'order_count': order_count, 'order_filter': order_filter}
 
     return render(request, 'accounts/customers.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -151,6 +166,7 @@ def createOrder(request, pk):
     context = {'formset': formset}
     return render(request, 'accounts/order_form.html', context)
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def updateOrder(request, pk):
@@ -166,6 +182,7 @@ def updateOrder(request, pk):
 
     context = {'form': form}
     return render(request, 'accounts/order_form.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
