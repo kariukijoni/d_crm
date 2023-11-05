@@ -5,9 +5,9 @@
 <div class="row">
   
   <div class='col-6 offset-3'>
-    <div class='card mt-3'>
-        <div class='card-header bg-secondary'>
-          Register
+    <div class='card mt-3 border-success'>
+        <div class='card-header text-center'>
+          <h4>Register</h4>
         </div>
         <div class="card-body">
           <form method="POST">
@@ -15,8 +15,9 @@
 
             {{form.as_p}}
 
-            <input class='btn btn-sm btn-primary' type="submit" name="Create User" />
+            <input class='btn btn-sm btn-primary' type="submit" value="Create User" />
           </form>
+          <br>
           {{form.errors}}
 
 

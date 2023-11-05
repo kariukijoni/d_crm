@@ -5,30 +5,31 @@
     <div class='col-md-5'>
         <h5>CUSTOMERS</h5>
         <hr>
-        <div class="card card-header">
-            <a class="btn btn-primary btn-sm btn-block" href="">Create Customer</a>
-        </div>
-        <div class="card card-body">
-            <table class="table table-sm">
-                <th>
-                    <tr>
-                        <th>#</th>
-                        <th>Customers</th>
-                        <th>Phone</th>
-                    </tr>
-                </th>
-                <tbody>
-                    {% for i in customers %}
-                    <tr>
-                        <td><a class="btn btn-primary btn-sm" href="{% url 'customer' i.id %}">View</a></td>
-                        <td>{{ i.name }}</td>
-                        <td>{{ i.phone }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="card">
+            <div class="card card-header">
+                <a class="btn btn-primary btn-sm btn-block" href="">Create Customer</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <th>
+                        <tr>
+                            <th>#</th>
+                            <th>Customers</th>
+                            <th>Phone</th>
+                        </tr>
+                    </th>
+                    <tbody>
+                        {% for i in customers %}
+                        <tr>
+                            <td><a class="btn btn-primary btn-sm" href="{% url 'customer' i.id %}">View</a></td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.phone }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-
+            </div>
         </div>
     </div>
 

@@ -5,8 +5,8 @@
 <div class="row">
   
   <div class='col-6 offset-3'>
-    <div class='card mt-3'>
-        <div class='card-header'>
+    <div class='card mt-3 border-success'>
+        <div class='card-header text-center'>
           {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -14,7 +14,7 @@
                 {% endfor %}
             </ul>
           {% endif %}
-          Login
+          <h4>Login</h4>
         </div>
         <div class="card-body">
           <form method="POST">
@@ -29,12 +29,18 @@
                 <input type="password" class="form-control" placeholder="password" name="password"> 
               
             </div>
-            <input class='btn btn-sm btn-primary' type="submit" name="Login" />
+            <input class='btn btn-sm btn-primary' type="submit" value="Login" />
 
           </form>
+          <br>
+          <div>
+            <a href="{% url "password_reset" %}">Forgot Password?</a>
+          </div>
+          <br>
           <div>
               <small>Dont have an account, register here</small>
               <a href="{% url "register" %}">Register</a>
+
           </div>
         </div>
     </div>
